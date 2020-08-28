@@ -7,20 +7,28 @@ today = datetime.date.today()
 
 
 #Aks the user for how many days to scout ahead
-daysahead = int(input("How many days ahead from today ("+ str(today)+ ") do you wanna scout?"))
-
-
-#Here goes the path to your chromedriver.exe file:
-path_to_chromedriver = 'C:\Program Files\chromedriver\chromedriver.exe'
-
-dates=[] #List to store exact date
-prices=[] #List to store price of the tickets
+while True:
+    try:
+        daysahead = int(input("How many days ahead from today ("+ str(today)+ ") do you wanna scout?"))
+        if isinstance(daysahead, int):
+            break
+    except ValueError:
+        print("Please insert a number")
 my_url_to_sthlm="https://www.sj.se/#/tidtabell/K%25C3%25B6benhavn%2520H/Stockholm%2520Central/enkel/avgang/20200101-0001/avgang/20200101-0001/BO-22--false///0//"
 my_url_to_cph="https://www.sj.se/#/tidtabell/Stockholm%2520Central/K%25C3%25B6benhavn%2520H/enkel/avgang/20200101-0001/avgang/20200101-0001/BO-22--false///0//"
-driver = webdriver.Chrome(executable_path=path_to_chromedriver)
 
-waiting = 3
+
 def main(my_url):
+    today = datetime.date.today()
+    #Here goes the path to your chromedriver.exe file:
+    path_to_chromedriver = 'C:\Program Files\chromedriver\chromedriver.exe'
+
+    dates=[] #List to store exact date
+    prices=[] #List to store price of the tickets
+
+    driver = webdriver.Chrome(executable_path=path_to_chromedriver)
+
+    waiting = 3
 
     for i in range(daysahead):
         prices_today = []
