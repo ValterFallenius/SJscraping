@@ -9,17 +9,23 @@ today = datetime.date.today()
 #Aks the user for how many days to scout ahead
 while True:
     try:
+        start_scout = input("How many days until you can leave? (0 to leave today)")
         daysahead = int(input("How many days ahead from today ("+ str(today)+ ") do you wanna scout?"))
-        if isinstance(daysahead, int):
+        if isinstance(daysahead, int) and isinstance(start_scout, int):
             break
     except ValueError:
         print("Please insert a number")
-my_url_to_sthlm="https://www.sj.se/#/tidtabell/K%25C3%25B6benhavn%2520H/Stockholm%2520Central/enkel/avgang/20200101-0001/avgang/20200101-0001/BO-22--false///0//"
-my_url_to_cph="https://www.sj.se/#/tidtabell/Stockholm%2520Central/K%25C3%25B6benhavn%2520H/enkel/avgang/20200101-0001/avgang/20200101-0001/BO-22--false///0//"
+my_url_cph_to_sthlm="https://www.sj.se/#/tidtabell/K%25C3%25B6benhavn%2520H/Stockholm%2520Central/enkel/avgang/20200101-0001/avgang/20200101-0001/BO-22--false///0//"
+my_url_sthlm_to_cph="https://www.sj.se/#/tidtabell/Stockholm%2520Central/K%25C3%25B6benhavn%2520H/enkel/avgang/20200101-0001/avgang/20200101-0001/BO-22--false///0//"
+my_url_goteborg_to_sthlm="https://www.sj.se/#/tidtabell/G%25C3%25B6teborg%2520C/Stockholm%2520Central/enkel/avgang/20200929-0500/avgang/20200929-1500/BO-22--false///0//"
+my_url_sthlm_to_goteborg="https://www.sj.se/#/tidtabell/Stockholm%2520Central/G%25C3%25B6teborg%2520C/enkel/avgang/20200929-0500/avgang/20200929-1500/BO-22--false///0//"
+
 
 
 def main(my_url):
     today = datetime.date.today()
+
+    today += datetime.timedelta(days=int(start_scout))
     #Here goes the path to your chromedriver.exe file:
     path_to_chromedriver = 'C:\Program Files\chromedriver\chromedriver.exe'
 
@@ -95,5 +101,5 @@ def main(my_url):
             continue
     return(dates_with_all_time_cheapest, all_time_cheapest)
 
-print("for STHLM to CPH:", str(main(my_url_to_cph)))
-print("for CPH to STHLM:", str(main(my_url_to_sthlm)))
+print("for STHLM to CPH:", str(main(my_url_sthlm_to_cph)))
+print("for CPH to STHLM:", str(main(my_url_cph_to_sthlm)))
