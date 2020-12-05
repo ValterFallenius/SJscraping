@@ -9,7 +9,7 @@ today = datetime.date.today()
 #Aks the user for how many days to scout ahead
 while True:
     try:
-        start_scout = input("How many days until you can leave? (0 to leave today)")
+        start_scout = int(input("How many days until you can leave? (0 to leave today)"))
         daysahead = int(input("How many days ahead from today ("+ str(today)+ ") do you wanna scout?"))
         if isinstance(daysahead, int) and isinstance(start_scout, int):
             break
